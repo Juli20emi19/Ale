@@ -1,0 +1,121 @@
+<!DOCTYPE html><html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Para mi Alejandra, con amor</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fad0c4);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      text-align: center;
+      color: #fff;
+      position: relative;
+    }.message {
+  position: relative;
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 40px;
+  border-radius: 15px;
+  font-size: 2em;
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+  max-width: 80%;
+  margin: 20px;
+  animation: fadeIn 3s ease-in-out, pulse 3s infinite alternate;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes pulse {
+  from { transform: scale(1); }
+  to { transform: scale(1.05); }
+}
+
+.heart {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  background: #ff5f6d;
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  animation: float 6s infinite ease-in-out;
+  opacity: 0.9;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(100vh) scale(0.5) rotate(0deg);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-10vh) scale(1.5) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.stars {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.star {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: white;
+  border-radius: 50%;
+  animation: twinkle 3s infinite;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.5); }
+}
+
+  </style>
+</head>
+<body>
+  <div class="stars"></div>
+  <div class="message">
+    <p>Querida Alejandra,</p>
+    <p>Cada instante a tu lado llena mi vida de alegría y amor. Eres mi inspiración y mi mayor felicidad.</p>
+    <p>Con todo mi cariño, te dedico estas palabras, esperando que cada latido te recuerde lo especial que eres.</p>
+    <p>Te amo profundamente.</p>
+  </div>  <script>
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.top = '100vh';
+      heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 6000);
+    }
+    
+    function createStars() {
+      for (let i = 0; i < 100; i++) {
+        const star = document.createElement('div');
+        star.classList.add('star');
+        star.style.left = Math.random() * 100 + 'vw';
+        star.style.top = Math.random() * 100 + 'vh';
+        star.style.animationDuration = (Math.random() * 3 + 2) + 's';
+        document.querySelector('.stars').appendChild(star);
+      }
+    }
+
+    setInterval(createHeart, 300);
+    createStars();
+  </script></body>
+</html>

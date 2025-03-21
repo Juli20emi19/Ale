@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flores Amarillas para Alejandra 🌻</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: linear-gradient(45deg, #ffeb3b, #ff9800, #ffeb3b);
+            background-size: 300% 300%;
+            animation: fondoAnimado 10s infinite alternate;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            font-family: 'Arial', sans-serif;
+        }
+
+        @keyframes fondoAnimado {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
+        h1 {
+            position: absolute;
+            top: 10%;
+            font-size: 3rem;
+            color: white;
+            text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            animation: aparecer 3s ease-out forwards;
+        }
+
+        @keyframes aparecer {
+            0% { transform: translateY(-50px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        .flower {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background-image: url('https://i.imgur.com/3jf5jT7.png');
+            background-size: cover;
+            animation: flotar linear infinite, girar 5s infinite linear;
+        }
+
+        @keyframes flotar {
+            from { transform: translateY(100vh) scale(0.5); opacity: 1; }
+            to { transform: translateY(-10vh) scale(1); opacity: 0; }
+        }
+
+        @keyframes girar {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .estrella {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.8;
+            box-shadow: 0 0 5px white;
+            animation: destello 1.5s infinite alternate;
+        }
+
+        @keyframes destello {
+            from { transform: scale(1); opacity: 0.5; }
+            to { transform: scale(1.5); opacity: 1; }
+        }
+
+        #music-controls {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background: #ffeb3b;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #fbc02d;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>🌻 Para mi hermosa Alejandra 🌻</h1>
+
+    <audio id="music" loop>
+        <source src="https://www.mfiles.co.uk/mp3-downloads/flower-duet.mp3" type="audio/mpeg">
+        Tu navegador no soporta el audio.
+    </audio>
+
+    <div id="music-controls">
+        <button onclick="toggleMusic()">🎵 Reproducir / Pausar</button>
+    </div>
+
+    <script>
+        function createFlower() {
+            const flower = document.createElement('div');
+            flower.classList.add('flower');
+            document.body.appendChild(flower);
+
+            const size = Math.random() * 40 + 30;
+            flower.style.width = size + 'px';
+            flower.style.height = size + 'px';
+
+            flower.style.left = Math.random() * window.innerWidth + 'px';
+            flower.style.animationDuration = Math.random() * 5 + 5 + 's';
+
+            setTimeout(() => {
+                flower.remove();
+            }, 10000);
+        }
+
+        function createStar() {
+            const star = document.createElement('div');
+            star.classList.add('estrella');
+            document.body.appendChild(star);
+
+            const x = Math.random() * window.innerWidth;
+            const y = Math.random() * window.innerHeight;
+
+            star.style.left = x + 'px';
+            star.style.top = y + 'px';
+
+            setTimeout(() => {
+                star.remove();
+            }, 2000);
+        }
+
+        function toggleMusic() {
+            const music = document.getElementById('music');
+            if (music.paused) {
+                music.play();
+            } else {
+                music.pause();
+            }
+        }
+
+        setInterval(createFlower, 300);
+        setInterval(createStar, 100);
+    </script>
+</body>
+</html>
